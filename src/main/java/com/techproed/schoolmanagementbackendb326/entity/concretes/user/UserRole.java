@@ -1,7 +1,10 @@
 package com.techproed.schoolmanagementbackendb326.entity.concretes.user;
 
 import com.techproed.schoolmanagementbackendb326.entity.enums.RoleType;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
@@ -13,13 +16,14 @@ import javax.persistence.*;
 @Builder
 public class UserRole {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    @Enumerated(EnumType.STRING)
-    private RoleType roleType;
+  @Enumerated(EnumType.STRING)
+  private RoleType roleType;
 
-    private String roleName;
+  private String roleName;
+
 
 }

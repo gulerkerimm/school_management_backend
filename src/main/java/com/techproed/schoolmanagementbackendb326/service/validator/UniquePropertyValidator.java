@@ -12,60 +12,55 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class UniquePropertyValidator {
 
-    private final UserRepository userRepository;
+  private final UserRepository userRepository;
 
-    public void checkUniqueProperty(User user, AbstractUserRequest userRequest){
+  public void checkUniqueProperty(User user, AbstractUserRequest userRequest){
+    String updatedUsername = "";
+    String updatedSsn = "";
+    String updatedEmail = "";
+    String updatedPhone = "";
+    boolean isChanged = false;
+    //we are checking that if we change the unique prop.s
+    if(!user.getUsername().equals(userRequest.getUsername())){
+      updatedUsername = userRequest.getUsername();
+      isChanged = true;
+    }
+    if(!user.getSsn().equals(userRequest.getSsn())){
+      updatedSsn = userRequest.getSsn();
+      isChanged = true;
+    }
+    if(!user.getEmail().equals(userRequest.getEmail())){
+      updatedEmail = userRequest.getEmail();
+      isChanged = true;
+    }
+    if (!user.getPhoneNumber().equals(userRequest.getPhoneNumber())){
+      updatedPhone = userRequest.getPhoneNumber();
+      isChanged = true;
+    }
+    if(isChanged){
+      checkDuplication(updatedUsername, updatedSsn, updatedPhone, updatedEmail);
+    }
+  }
 
-        String updatedUserName="";
-        String updatedSsn="";
-        String updatedEmail ="";
-        String updatedPhone ="";
 
-        boolean isChanged=false;
-        //we are checking that if we change the unique prop.s
-
-
-        if(!user.getUsername().equals(userRequest.getUsername())){
-            updatedUserName=userRequest.getSurname();
-            isChanged=true;
-        }
-        if(!user.getSsn().equals(userRequest.getSsn())){
-            updatedSsn=userRequest.getSsn();
-            isChanged=true;
-        }
-        if(!user.getEmail().equals(userRequest.getEmail())){
-            updatedEmail=userRequest.getEmail();
-            isChanged=true;
-        }
-        if(!user.getPhoneNumber().equals(userRequest.getPhoneNumber())){
-            updatedPhone=userRequest.getPhoneNumber();
-            isChanged=true;
-        }
-        if (isChanged) {
-            checkDuplication(updatedUserName,updatedSsn,updatedPhone,updatedEmail);
-
-        }
+  public void checkDuplication(
+      String username,
+      String ssn,
+      String phone,
+      String email) {
+    if(userRepository.existsByUsername(username)) {
+      throw new ConflictException(String.format(ErrorMessages.ALREADY_REGISTER_MESSAGE_USERNAME, username));
+    }
+    if(userRepository.existsByEmail(email)) {
+      throw new ConflictException(String.format(ErrorMessages.ALREADY_REGISTER_MESSAGE_EMAIL, email));
+    }
+    if(userRepository.existsByPhoneNumber(phone)) {
+      throw new ConflictException(String.format(ErrorMessages.ALREADY_REGISTER_MESSAGE_PHONE_NUMBER, phone));
+    }
+    if(userRepository.existsBySsn(ssn)) {
+      throw new ConflictException(String.format(ErrorMessages.ALREADY_REGISTER_MESSAGE_SSN, ssn));
     }
 
-
-    public void checkDuplication(
-            String username, //userNameFromDto
-            String ssn,
-            String phone,
-            String email) {
-        if(userRepository.existsByUsername(username)) {
-            throw new ConflictException(String.format(ErrorMessages.ALREADY_REGISTER_MESSAGE_USERNAME, username));
-        }
-        if(userRepository.existsByEmail(email)) {
-            throw new ConflictException(String.format(ErrorMessages.ALREADY_REGISTER_MESSAGE_EMAIL, email));
-        }
-        if(userRepository.existsByPhoneNumber(phone)) {
-            throw new ConflictException(String.format(ErrorMessages.ALREADY_REGISTER_MESSAGE_PHONE_NUMBER, phone));
-        }
-        if(userRepository.existsBySsn(ssn)) {
-            throw new ConflictException(String.format(ErrorMessages.ALREADY_REGISTER_MESSAGE_SSN, ssn));
-        }
-
-    }
+  }
 
 }

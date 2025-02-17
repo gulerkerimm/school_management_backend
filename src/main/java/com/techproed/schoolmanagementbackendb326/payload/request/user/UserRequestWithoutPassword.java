@@ -1,6 +1,5 @@
 package com.techproed.schoolmanagementbackendb326.payload.request.user;
 
-
 import com.techproed.schoolmanagementbackendb326.payload.request.abstracts.AbstractUserRequest;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,6 +11,5 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @NoArgsConstructor
 public class UserRequestWithoutPassword extends AbstractUserRequest {
-
 
 }

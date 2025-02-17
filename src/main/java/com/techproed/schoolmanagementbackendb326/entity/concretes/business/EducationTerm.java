@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 
 @Entity
@@ -19,26 +18,30 @@ import java.util.List;
 @Builder
 public class EducationTerm {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    @Enumerated(EnumType.STRING)
-    private Term term;
+  @Enumerated(EnumType.STRING)
+  private Term term;
 
-    @Column(name ="start_date")
-    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern ="yyyy-MM-dd")
-    private LocalDate startDate;
+  @Column(name = "start_date")
+  @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd")
+  private LocalDate startDate;
 
-    @Column(name ="end_date")
-    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern ="yyyy-MM-dd" )
-    private LocalDate endDate;
+  @Column(name = "end_date")
+  @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd")
+  private LocalDate endDate;
 
-    @Column(name="Last_registration_date")
-    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd")
-    private LocalTime LastRegistrationDate;
+  @Column(name = "last_registration_date")
+  @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd")
+  private LocalDate lastRegistrationDate;
 
-    @OneToMany(mappedBy ="educationTerm",cascade = CascadeType.ALL)
-    private List<LessonProgram> lessonProgram;
+  @OneToMany(mappedBy = "educationTerm",cascade = CascadeType.ALL)
+  private List<LessonProgram>lessonProgram;
+
+
+
+
 
 }

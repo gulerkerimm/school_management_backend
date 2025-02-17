@@ -1,6 +1,5 @@
 package com.techproed.schoolmanagementbackendb326.entity.concretes.business;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,21 +15,21 @@ import java.util.Set;
 @NoArgsConstructor
 @Builder
 public class Lesson {
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  private String lessonName;
+
+  private Integer creditScore;
+
+  private Boolean isCompulsory;
+
+  @JsonIgnore
+  @ManyToMany(mappedBy = "lessons")
+  private Set<LessonProgram>lessonPrograms;
 
 
-    private String lessonName;
-
-    private Integer creditScore;
-
-    private Boolean isCompulsory;
-
-    @JsonIgnore
-    @ManyToMany(mappedBy = "lessons")
-    private Set<LessonProgram> lessonPrograms;
 
 
 }

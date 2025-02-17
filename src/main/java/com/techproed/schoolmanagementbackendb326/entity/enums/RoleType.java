@@ -5,15 +5,15 @@ import lombok.Getter;
 @Getter
 public enum RoleType {
 
-    ADMIN("Admin"),
-    TEACHER("Teacher"),
-    STUDENT("Student"),
-    MANAGER("Manager"),
-    ASSISTANT_MANAGER("ViceDean");
+  ADMIN("Admin"),
+  TEACHER("Teacher"),
+  STUDENT("Student"),
+  MANAGER("Manager"),
+  ASSISTANT_MANAGER("ViceDean");
 
-    public final String name;
+  public final String name;
 
-    RoleType(String name) {
-        this.name = name;
-    }
+  RoleType(String name) {
+    this.name = name;
+  }
 }
