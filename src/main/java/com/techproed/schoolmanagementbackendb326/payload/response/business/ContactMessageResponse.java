@@ -15,14 +15,14 @@ import java.time.LocalDateTime;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ContactMessageResponse {
 
-	private String name;
+    private String name;
 
-	private String email;
+    private String email;
 
-	private String subject;
+    private String subject;
 
-	private String message;
+    private String message;
 
-	private LocalDateTime createdAt;
+    private LocalDateTime createdAt;
 
 }

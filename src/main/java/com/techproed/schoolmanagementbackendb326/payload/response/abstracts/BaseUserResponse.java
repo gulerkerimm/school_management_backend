@@ -14,20 +14,17 @@ import java.time.LocalDate;
 @SuperBuilder
 public abstract class BaseUserResponse {
 
-  private Long id;
-  private String username;
-  private String name;
-  private String surname;
-  private LocalDate birthDay;
-  private String ssn;
-  private String birthPlace;
-  private String phoneNumber;
-  private String email;
-  private Gender gender;
-  private String userRole;
-
-
-
+    private Long id;
+    private String username;
+    private String name;
+    private String surname;
+    private LocalDate birthDay;
+    private String ssn;
+    private String birthPlace;
+    private String phoneNumber;
+    private String email;
+    private Gender gender;
+    private String userRole;
 
 
 }

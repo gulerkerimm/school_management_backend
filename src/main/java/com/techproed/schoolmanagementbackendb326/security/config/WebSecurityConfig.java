@@ -20,102 +20,96 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import javax.servlet.Filter;
-
 @EnableWebSecurity
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @RequiredArgsConstructor
 public class WebSecurityConfig {
 
-  private final UserDetailServiceImpl userDetailService;
+    private final UserDetailServiceImpl userDetailService;
 
-  //diger pakette olusturdugumuz security exception handler
-  private final AuthEntryPointJwt authEntryPointJwt;
+    //diger pakette olusturdugumuz security exception handler
+    private final AuthEntryPointJwt authEntryPointJwt;
 
-  @Bean
-  public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-    //CORS cross*origin resource sharing
-    http.cors()
-        .and()
-        .csrf().disable()
-        //configure exception handler
-    .exceptionHandling().authenticationEntryPoint(authEntryPointJwt)
-        .and()
-        //configure session management
-        .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-        //configure allow list
-        .and()
-        .authorizeRequests().antMatchers(AUTH_WHITELIST).permitAll()
-        //other requests will be authenticated
-        .anyRequest().authenticated();
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        //CORS cross*origin resource sharing
+        http.cors()
+                .and()
+                .csrf().disable()
+                //configure exception handler
+                .exceptionHandling().authenticationEntryPoint(authEntryPointJwt)
+                .and()
+                //configure session management
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                //configure allow list
+                .and()
+                .authorizeRequests().antMatchers(AUTH_WHITELIST).permitAll()
+                //other requests will be authenticated
+                .anyRequest().authenticated();
         //configure frames to be sure from the same origin
         http.headers().frameOptions().sameOrigin();
         //configure authentication provider
         http.authenticationProvider(authenticationProvider());
         //configure JWT token hanler
         http.addFilterBefore(authenticationJwtTokenFilter(),
-            UsernamePasswordAuthenticationFilter.class);
+                UsernamePasswordAuthenticationFilter.class);
         return http.build();
-  }
+    }
 
-  @Bean
-  public DaoAuthenticationProvider authenticationProvider() {
-    DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-    authProvider.setUserDetailsService(userDetailService);
-    authProvider.setPasswordEncoder(passwordEncoder());
-    return authProvider;
-  }
+    @Bean
+    public DaoAuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+        authProvider.setUserDetailsService(userDetailService);
+        authProvider.setPasswordEncoder(passwordEncoder());
+        return authProvider;
+    }
 
-  @Bean
-  public PasswordEncoder passwordEncoder() {
-    return new BCryptPasswordEncoder();
-  }
-
-
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
 
-  @Bean
-  public Filter authenticationJwtTokenFilter(){
-    return new AuthTokenFilter();
-  }
+    @Bean
+    public AuthTokenFilter authenticationJwtTokenFilter() {
+        return new AuthTokenFilter();
+    }
 
-  @Bean
-  public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration)
-      throws Exception {
-    return configuration.getAuthenticationManager();
-  }
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration)
+            throws Exception {
+        return configuration.getAuthenticationManager();
+    }
 
 
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**")
+                        //we let all sources to call our APIs
+                        .allowedOrigins("*")
+                        .allowedHeaders("*")
+                        .allowedMethods("*");
+            }
+        };
+    }
 
-  @Bean
-  public WebMvcConfigurer corsConfigurer() {
-    return new WebMvcConfigurer() {
-      @Override
-      public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")
-            //we let all sources to call our APIs
-            .allowedOrigins("*")
-            .allowedHeaders("*")
-            .allowedMethods("*");
-      }
+
+    private static final String[] AUTH_WHITELIST = {
+            "/v3/api-docs/**",
+            "swagger-ui.html",
+            "/swagger-ui/**",
+            "/",
+            "index.html",
+            "/images/**",
+            "/css/**",
+            "/js/**",
+            "/contactMessages/save",
+            "/auth/login"
     };
-  }
-
-
-  private static final String[] AUTH_WHITELIST = {
-      "/v3/api-docs/**",
-      "swagger-ui.html",
-      "/swagger-ui/**",
-      "/",
-      "index.html",
-      "/images/**",
-      "/css/**",
-      "/js/**",
-      "/contactMessages/save",
-      "/auth/login"
-  };
-
-
-
 }
+
+
