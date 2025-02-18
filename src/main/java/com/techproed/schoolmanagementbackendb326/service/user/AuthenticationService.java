@@ -3,9 +3,8 @@ package com.techproed.schoolmanagementbackendb326.service.user;
 import com.techproed.schoolmanagementbackendb326.payload.request.authentication.LoginRequest;
 import com.techproed.schoolmanagementbackendb326.payload.response.authentication.AuthenticationResponse;
 import com.techproed.schoolmanagementbackendb326.repository.user.UserRepository;
-
-import com.techproed.schoolmanagementbackendb326.security.jwt.JwtUtils;
-import com.techproed.schoolmanagementbackendb326.security.service.UserDetailsImpl;
+import com.techproed.schoolmanagementbackendb326.securtiy.jwt.JwtUtils;
+import com.techproed.schoolmanagementbackendb326.securtiy.service.UserDetailsImpl;
 import com.techproed.schoolmanagementbackendb326.service.helper.MethodHelper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;

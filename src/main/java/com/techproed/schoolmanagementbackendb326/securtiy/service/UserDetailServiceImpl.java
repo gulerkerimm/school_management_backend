@@ -1,4 +1,4 @@
-package com.techproed.schoolmanagementbackendb326.security.service;
+package com.techproed.schoolmanagementbackendb326.securtiy.service;
 
 import com.techproed.schoolmanagementbackendb326.entity.concretes.user.User;
 import com.techproed.schoolmanagementbackendb326.service.helper.MethodHelper;

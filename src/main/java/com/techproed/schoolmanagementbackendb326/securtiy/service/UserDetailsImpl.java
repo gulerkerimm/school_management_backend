@@ -1,14 +1,15 @@
-package com.techproed.schoolmanagementbackendb326.security.service;
+package com.techproed.schoolmanagementbackendb326.securtiy.service;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import java.util.ArrayList;
-import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -24,7 +25,7 @@ public class UserDetailsImpl implements UserDetails {
   private List<GrantedAuthority>authorities;
 
   public UserDetailsImpl(Long id, String username, String password,
-                         String role) {
+      String role) {
     this.id = id;
     this.username = username;
     this.password = password;
