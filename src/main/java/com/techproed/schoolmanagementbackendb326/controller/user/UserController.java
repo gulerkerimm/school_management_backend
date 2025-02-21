@@ -63,7 +63,6 @@ public class UserController {
     return userService.updateUserById(userRequest,userId);
   }
 
-  @PreAuthorize("hasAnyAuthority('Admin','Dean','ViceDean','Teacher')")
   @PatchMapping("/updateLoggedInUser")
   public ResponseEntity<String>updateLoggedInUser(
       @RequestBody @Valid UserRequestWithoutPassword userRequestWithoutPassword,
