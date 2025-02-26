@@ -1,12 +1,11 @@
 package com.techproed.schoolmanagementbackendb326.payload.request.abstracts;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
-
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @SuperBuilder
 @Data

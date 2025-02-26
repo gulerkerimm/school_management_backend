@@ -3,6 +3,7 @@ package com.techproed.schoolmanagementbackendb326.securtiy.config;
 import com.techproed.schoolmanagementbackendb326.securtiy.jwt.AuthEntryPointJwt;
 import com.techproed.schoolmanagementbackendb326.securtiy.jwt.AuthTokenFilter;
 import com.techproed.schoolmanagementbackendb326.securtiy.service.UserDetailServiceImpl;
+import java.net.PasswordAuthentication;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -2,8 +2,13 @@ package com.techproed.schoolmanagementbackendb326.payload.mappers;
 
 import com.techproed.schoolmanagementbackendb326.entity.concretes.business.EducationTerm;
 import com.techproed.schoolmanagementbackendb326.payload.request.business.EducationTermRequest;
+import com.techproed.schoolmanagementbackendb326.payload.request.business.EducationTermUpdateRequest;
 import com.techproed.schoolmanagementbackendb326.payload.response.business.EducationTermResponse;
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
+import org.mapstruct.MappingConstants;
+import org.mapstruct.MappingTarget;
+import org.mapstruct.NullValueCheckStrategy;
+import org.mapstruct.NullValuePropertyMappingStrategy;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING,
         //with this parameter, MapStruct will always check source properties if they have null value or not.
@@ -14,8 +19,7 @@ public interface EducationTermMapper {
 
     EducationTerm mapEducationTermRequestToEducationTerm(EducationTermRequest educationTermRequest);
 
-    //TODO check the usage
-    EducationTerm updateEducationTermWithEducationTermRequest(EducationTermRequest educationTermRequest, @MappingTarget EducationTerm educationTerm);
+    EducationTerm updateEducationTermWithEducationTermUpdateRequest(EducationTermUpdateRequest educationTermRequest, @MappingTarget EducationTerm educationTerm);
 
     EducationTermResponse mapEducationTermToEducationTermResponse( EducationTerm educationTerm);
 }

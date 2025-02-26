@@ -6,6 +6,8 @@ import com.techproed.schoolmanagementbackendb326.repository.user.UserRepository;
 import com.techproed.schoolmanagementbackendb326.securtiy.jwt.JwtUtils;
 import com.techproed.schoolmanagementbackendb326.securtiy.service.UserDetailsImpl;
 import com.techproed.schoolmanagementbackendb326.service.helper.MethodHelper;
+import io.jsonwebtoken.Jwts;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -13,8 +15,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import javax.validation.Valid;
 
 @Service
 @RequiredArgsConstructor

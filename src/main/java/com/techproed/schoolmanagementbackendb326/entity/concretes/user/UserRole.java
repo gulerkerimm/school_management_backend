@@ -1,12 +1,17 @@
 package com.techproed.schoolmanagementbackendb326.entity.concretes.user;
 
 import com.techproed.schoolmanagementbackendb326.entity.enums.RoleType;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.*;
 
 @Entity
 @Table(name = "roles")

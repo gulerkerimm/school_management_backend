@@ -1,12 +1,11 @@
 package com.techproed.schoolmanagementbackendb326.payload.response.abstracts;
 
 import com.techproed.schoolmanagementbackendb326.entity.enums.Gender;
+import java.time.LocalDate;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
-
-import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor

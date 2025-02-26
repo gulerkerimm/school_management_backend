@@ -5,10 +5,9 @@ import com.techproed.schoolmanagementbackendb326.entity.enums.RoleType;
 import com.techproed.schoolmanagementbackendb326.exception.ResourceNotFoundException;
 import com.techproed.schoolmanagementbackendb326.payload.messages.ErrorMessages;
 import com.techproed.schoolmanagementbackendb326.repository.user.UserRoleRepository;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor

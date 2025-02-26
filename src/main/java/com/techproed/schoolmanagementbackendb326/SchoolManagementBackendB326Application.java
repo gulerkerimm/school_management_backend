@@ -7,11 +7,11 @@ import com.techproed.schoolmanagementbackendb326.payload.request.user.UserReques
 import com.techproed.schoolmanagementbackendb326.repository.user.UserRoleRepository;
 import com.techproed.schoolmanagementbackendb326.service.user.UserRoleService;
 import com.techproed.schoolmanagementbackendb326.service.user.UserService;
+import java.time.LocalDate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.time.LocalDate;
 
 @SpringBootApplication
 public class SchoolManagementBackendB326Application implements CommandLineRunner {
@@ -21,7 +21,7 @@ public class SchoolManagementBackendB326Application implements CommandLineRunner
   private final UserService userService;
 
   public SchoolManagementBackendB326Application(UserRoleService userRoleService,
-                                                UserRoleRepository userRoleRepository, UserService userService) {
+      UserRoleRepository userRoleRepository, UserService userService) {
     this.userRoleService = userRoleService;
     this.userRoleRepository = userRoleRepository;
     this.userService = userService;

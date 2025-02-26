@@ -8,15 +8,28 @@ import com.techproed.schoolmanagementbackendb326.entity.concretes.business.Lesso
 import com.techproed.schoolmanagementbackendb326.entity.concretes.business.Meet;
 import com.techproed.schoolmanagementbackendb326.entity.concretes.business.StudentInfo;
 import com.techproed.schoolmanagementbackendb326.entity.enums.Gender;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Set;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.*;
-import java.time.LocalDate;
-import java.util.List;
-import java.util.Set;
 
 @Entity
 @Data
@@ -78,12 +91,13 @@ public class User {
       joinColumns = @JoinColumn(name = "user_id"),
       inverseJoinColumns = @JoinColumn(name = "lesson_program_id")
   )
-  private Set<LessonProgram>lessonProgramList;
+  private List<LessonProgram>lessonProgramList;
 
 
   @JsonIgnore
   @ManyToMany(mappedBy = "studentList")
   private List<Meet>meetList;
+
 
 
 

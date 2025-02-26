@@ -2,13 +2,12 @@ package com.techproed.schoolmanagementbackendb326.payload.request.business;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.techproed.schoolmanagementbackendb326.entity.enums.Term;
+import java.time.LocalDate;
+import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
